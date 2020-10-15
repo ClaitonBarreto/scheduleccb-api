@@ -9,6 +9,7 @@ Router.get('/', (req,res) => {
 
 Router.get('/people/:cultId', PeopleController.index)
 Router.post('/people/:cultId', PeopleController.create)
+Router.put('/people/:id', PeopleController.update)
 
 Router.get('/cult', CultController.index)
 Router.post('/cult', CultController.create)

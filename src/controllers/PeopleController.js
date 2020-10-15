@@ -6,7 +6,7 @@ module.exports = {
 
         const peoples = await Peoples.find({
             cult: cultId
-        })
+        }).sort({name: 'asc'})
 
         return res.json(peoples)
     },
@@ -22,8 +22,22 @@ module.exports = {
 
         return res.json(newPeople)
     },  
-    update: () => {
+    update: async (req,res) => {
+        const {id} = req.params
 
+        const update = await Peoples.updateOne({_id: id}, {checked: true})
+
+        if(update.nModified == 1) {
+            return res.status(200).json({
+                error: false,
+                message: 'participante confirmado'
+            })
+        }
+
+        return res.status(200).json({
+            error: true,
+            message: 'Ocorreu um erro ao tentar confirmar o participante'
+        })
     },
     delete: () => {
 
