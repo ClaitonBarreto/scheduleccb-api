@@ -39,6 +39,16 @@ module.exports = {
             message: 'Ocorreu um erro ao tentar confirmar o participante'
         })
     },
+    getCountPeople: async (req,res) => {
+        const { cultId } = req.params
+        const count = await Peoples.find({
+            cult: cultId
+        }).countDocuments()
+
+        res.status(200).json({
+            count
+        })
+    },
     delete: () => {
 
     }

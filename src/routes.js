@@ -14,4 +14,6 @@ Router.put('/people/:id', PeopleController.update)
 Router.get('/cult', CultController.index)
 Router.post('/cult', CultController.create)
 
+Router.get('/lotation/:cultId', PeopleController.getCountPeople)
+
 module.exports = Router;
