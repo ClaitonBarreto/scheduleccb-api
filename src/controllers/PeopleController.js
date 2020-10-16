@@ -49,7 +49,23 @@ module.exports = {
             count
         })
     },
-    delete: () => {
+    delete: async (req,res) => {
+        const {id} = req.params
 
+        const op = await Peoples.deleteOne({
+            _id: id
+        })
+
+        if(op.n == 1) {
+            return res.json({
+                error: false,
+                message: 'Registro deletado!'
+            })
+        }
+
+        return res.status(200).json({
+            error: true,
+            message: 'Houve um erro ao deletar o registo!'
+        })
     }
 }
